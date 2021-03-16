@@ -1,9 +1,9 @@
 const goalsDAO = require('../models/goalModel');
-// const db = new goalsDAO();
+const db = new goalsDAO();
 
 exports.landing_page = function(reg, res) {
     res.send('Hello! Welcome to my application.');
-    // db.init();
+    db.init();
 };
 
 exports.register = function(reg, res) {
@@ -16,6 +16,7 @@ exports.login = function(reg, res) {
 
 exports.user_goals = function(reg, res) {
     res.send('<h1>user goals not implemented</h1>');
+    db.getUsersGoals();
 };
 
 exports.add_goal = function(req, res) {
