@@ -2,8 +2,14 @@ const goalsDAO = require('../models/goalModel');
 const db = new goalsDAO();
 
 exports.landing_page = function(reg, res) {
-    res.send('Hello! Welcome to my application.');
+    // res.send('Hello! Welcome to my application.');
+    
     db.init();
+
+    //  //gets data from DB and displays to page
+     res.render('index', {
+        'title': 'Home Page'
+    });
 };
 
 exports.register = function(reg, res) {
