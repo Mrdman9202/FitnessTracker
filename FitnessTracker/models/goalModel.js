@@ -1,6 +1,5 @@
 //import the nedb module
 const nedb = require('nedb');
-// const db = new nedb({ filename: 'goals.db', autoload: true});
 
 class Goals{
 
@@ -11,8 +10,9 @@ class Goals{
 
         this.dbUsers = new nedb({ filename: 'users.db', autoload: true});
         console.log('users db created in embedded mode');
-    } 
 
+        
+    } 
 
     // Seed the database
     init () {
@@ -45,6 +45,8 @@ class Goals{
 
         console.log('goal : run Added')
     }; //end of seeding
+
+    
 
     getUsersGoals() {
 
