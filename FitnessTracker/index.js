@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-// const router = require('./routes/guestbookRoutes');
+const router = require('./routes/siteRoutes');
 // const mustache = require('mustache-express');
 // const bodyParser = require('body-parser');
 
@@ -11,16 +11,23 @@ const public = path.join(__dirname, 'public');
 // app.set('view engine', 'mustache');
 // app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(public));
-// app.use('/', router);
+app.use('/', router);
 
 
-app.use(function(req, res) {
-    res.status(404);
-    res.send('Oops! We didn\'t find what you are looking for.');
-})
-   
+
    
 app.listen(3000, () => {
     console.log('Server started on port 3000. Ctrl^c to quit.');
 }) 
    
+//import the nedb module
+const nedb = require('nedb');
+
+//create a db
+const db = new nedb({ filename: 'goals.db', autoload: true});
+
+const dbUsers = new nedb({ filename: 'users.db', autoload: true});
+
+console.log('db created.');
+
+
