@@ -112,11 +112,13 @@ class Goals{
                 console.log('document inserted into the database', doc);
             }
         })
-
-        // this.db.insert(newGoal, (err, doc) => {
-        //   err ? console.log('Error inserting document: ', goal) : console.log(`Successfully inserted goal to DB: ${goal}`)
-        // });
       };
+
+      updateGoal (id, goal, goalDate) {
+        this.db.update({ _id: id }, { $set: { goal: goal, goalDate: goalDate } }, (err, numUpdated) => {
+          err ? console.log(`Error updating goal: ${id}`) : console.log(`${numUpdated} Goal updated in db`)
+        })
+      }
 
     //delete passed through goals function from DB  
     deleteGoal (id) {
@@ -125,7 +127,19 @@ class Goals{
         });
     };
        
+    getGoalById (id) {
+        return new Promise((resolve, reject) => {
+          this.db.findOne({ _id: id }, (err, entry) => {
+            err ? reject(err) : resolve(entry)
+          })
+        })
+      }
 
+      compelteGoal (id, reps, time) {
+        this.db.update({ _id: id }, { $set: { reps: reps, time: time, isComplete: true } }, (err, numUpdated) => {
+          err ? console.log(`Error updating goal: ${id}`) : console.log(`${numUpdated} Goal updated in db`)
+        })
+      }
 
 }//end of goals class
 

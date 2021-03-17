@@ -4,7 +4,7 @@ const db = new goalsDAO();
 exports.landing_page = function(reg, res) {
 
     //runs the DB init function which seeds the DB
-    db.init();
+    // db.init();
 
      res.render('index', {
         'title': 'Home Page'
@@ -68,15 +68,50 @@ exports.post_add_goal = function(req, res) {
     res.redirect('/mygoals');
 };
 
-exports.edit_goal = function(reg, res) {
-    // res.send('<h1>edit goals not implemented</h1>');
+// exports.edit_goal = async(req, res) => {
 
+//     // const id = req.params._id
+//     // const goal = await db.getGoalById(id)
+//     res.render('editGoal', {
+//         'title': 'Edit Goal',
+//         // 'goal': goal.goal
+//     });
+// };
+
+exports.edit_goal = async (req, res) => {
+    const id = req.params._id
+    const goals = await db.getGoalById(id)
     res.render('editGoal', {
-        'title': 'Edit Goal'
-    });
+      'goal': goals.goal,
+      'goalDate' : goals.goalDate
+    })
+
+  }
+
+exports.post_edit_goal = function(req, res) {
+
+    if (!req.body.goal) {
+        res.status(400).send('Goal must contain goal name')
+        return
+      }
+  
+      db.updateGoal(req.params._id, req.body.goal, req.body.goalDate)
+      res.redirect(`/mygoals`)
 };
 
-exports.complete_goal = function(reg, res) {
+exports.complete_goal = async (req, res) => {
+    const id = req.params._id
+    const goals = await db.getGoalById(id)
+    res.render('completeGoal', {
+      'goal': goals.goal,
+      'goalDate' : goals.goalDate,
+      'reps': goals.reps,
+      'time': goals.time
+    })
+
+  }
+
+exports.post_complete_goal = function(reg, res) {
     // res.send('<h1>compelete goals not impelemented</h1>');
 
     res.render('completeGoal', {

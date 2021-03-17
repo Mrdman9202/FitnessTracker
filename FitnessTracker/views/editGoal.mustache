@@ -1,7 +1,29 @@
 <html lang="en">
 {{>partials/navbar}}
+<body class="container">
 <head>
    {{>partials/header}}
 </head>
+
+<form method="post" role="form">
+   <div class="form-group">
+      <label for="goal">Goal</label>
+      <input type="text" class="form-control" id="goal" name="goal" placeholder="{{goal}}">
+   </div>
+
+    <label for="start">Goal Date:</label>
+
+   <input type="date" id="goalDate" name="goalDate" value="{{goalDate}}" min="2021-03-17" max="2023-01-01">
+
+   <div class="form-group">
+      <input type="submit" value="Update Goal" class="btn btn-primary">
+   </div>
+
+   <a href="/mygoals" class="btn btn-primary">
+      cancel
+   </a>
+
+</body>
+
 
 {{>partials/footer}}
