@@ -1,6 +1,6 @@
-{"user":"daniel","goal":"Do Weights","reps":"10","time":10,"isComplete":false,"goalDate":{"$$date":1618700400000},"_id":"dEQbl7YpKBTysCVo"}
-{"user":"daniel","goal":"run","reps":"N/A","time":20,"isComplete":false,"goalDate":{"$$date":1618786800000},"_id":"WAh6U8u0x4geh5hh"}
 {"user":"daniel","goal":"Do Push Ups","reps":"10","time":10,"isComplete":true,"goalDate":{"$$date":1618354800000},"_id":"LW5Nhw3GFzIKqVQL"}
-{"user":"daniel","goal":"run","reps":"N/A","time":20,"isComplete":true,"goalDate":{"$$date":1618441200000},"_id":"JxMmwTOlJ6PFSNxl"}
-{"user":"daniel","goal":"Do Weights","reps":"10","time":10,"isComplete":false,"goalDate":"2021-03-19","_id":"dEQbl7YpKBTysCVo"}
+{"user":"daniel","goal":"run","reps":"N/A","time":20,"isComplete":false,"goalDate":{"$$date":1618786800000},"_id":"WAh6U8u0x4geh5hh"}
 {"user":"daniel","goal":"Do Weights","reps":"12","time":"122","isComplete":true,"goalDate":"2021-03-19","_id":"dEQbl7YpKBTysCVo"}
+{"$$deleted":true,"_id":"WAh6U8u0x4geh5hh"}
+{"user":"daniel","goal":"test","rep":"N/A","time":"N/A","isComplete":false,"goalDate":"2021-03-17","_id":"eYD9JG2tIwDqFOUi"}
+{"user":"daniel","goal":"Run","rep":"N/A","time":"N/A","isComplete":false,"goalDate":"2021-03-17","_id":"eYD9JG2tIwDqFOUi"}
