@@ -11,6 +11,7 @@ exports.landing_page = function(reg, res) {
     });
 };
 
+//register function which has not been implemented yet
 exports.register = function(reg, res) {
 
    res.render('register', {
@@ -18,6 +19,7 @@ exports.register = function(reg, res) {
     });
 };
 
+//login function which has not been implemented yet
 exports.login = function(reg, res) {
     
     res.render('login', {
@@ -25,6 +27,7 @@ exports.login = function(reg, res) {
     });
 };
 
+//loads the selected users goals from the DB, will be improved when the login and register is implemented 
 exports.user_goals = function(reg, res) {
 
     db.getUsersGoals('daniel').then((list) => {
@@ -40,6 +43,7 @@ exports.user_goals = function(reg, res) {
 };
 
 //GET
+//sends the title to the view
 exports.add_goal = function(req, res) {
 
     res.render('addGoal', {
@@ -49,6 +53,7 @@ exports.add_goal = function(req, res) {
 
 
 //POST
+//passes the parameters to the add goal method
 exports.post_add_goal = function(req, res) {
     if (!req.body.goal) {
         res.status(400).send("goals must have an goal name.");
@@ -58,6 +63,8 @@ exports.post_add_goal = function(req, res) {
     res.redirect('/mygoals');
 };
 
+//GET
+//gets the selected goals details and passes them to the view
 exports.edit_goal = async (req, res) => {
     const id = req.params._id
     const goals = await db.getGoalById(id)
@@ -67,6 +74,8 @@ exports.edit_goal = async (req, res) => {
     });;
   }
 
+//POST
+//passes the parameters to the update goal method
 exports.post_edit_goal = function(req, res) {
 
     if (!req.body.goal) {
