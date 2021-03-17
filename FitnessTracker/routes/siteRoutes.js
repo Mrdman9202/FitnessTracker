@@ -12,8 +12,8 @@ router.post('/addgoal', controller.post_add_goal);
 router.get('/editgoal/:_id', controller.edit_goal);
 router.post('/editgoal/:_id', controller.post_edit_goal);
 
-router.get('/completegoal:_id', controller.complete_goal);
-router.post('/completegoal:_id', controller.post_complete_goal);
+router.get('/completegoal/:_id', controller.complete_goal);
+router.post('/completegoal/:_id', controller.post_complete_goal);
 
 
 router.get('/deletegoal/:_id', controller.delete_goal);

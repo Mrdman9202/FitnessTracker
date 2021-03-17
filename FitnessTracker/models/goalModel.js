@@ -31,7 +31,7 @@ class Goals{
             reps: '10',
             time: 10,
             isComplete: false,
-            goalDate: new Date(2021, 3, 18, 12, 30, 0, 0)
+            goalDate: new Date(2021, 3, 18)
         });
 
         console.log('goal : Do Boxing added')
@@ -42,7 +42,7 @@ class Goals{
             reps: 'N/A',
             time: 20,
             isComplete: false,
-            goalDate: new Date(2021, 3, 19, 12, 30, 0, 0)
+            goalDate: new Date(2021, 3, 19)
         }); 
 
         console.log('goal : boxing Added')
@@ -53,7 +53,7 @@ class Goals{
                 reps: '10',
                 time: 10,
                 isComplete: true,
-                goalDate: new Date(2021, 3, 14, 12, 30, 0, 0)
+                goalDate: new Date(2021, 3, 14)
         });
 
         console.log('goal : Do Push Ups added')
@@ -64,7 +64,7 @@ class Goals{
             reps: 'N/A',
             time: 20,
             isComplete: true,
-            goalDate: new Date(2021, 3, 15, 12, 30, 0, 0)
+            goalDate: new Date(2021, 3, 15)
         }); 
 
         console.log('goal : run Added')
