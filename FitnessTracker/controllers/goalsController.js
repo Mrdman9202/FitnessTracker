@@ -2,7 +2,9 @@ const goalsDAO = require('../models/goalModel');
 const db = new goalsDAO();
 
 exports.landing_page = function(reg, res) {
-    db.init();
+
+    //runs the DB init function which seeds the DB
+    // db.init();
 
      res.render('index', {
         'title': 'Home Page'
@@ -27,11 +29,22 @@ exports.login = function(reg, res) {
 exports.user_goals = function(reg, res) {
     // res.send('<h1>user goals not implemented</h1>');
 
-    res.render('userGoals', {
-        'title': 'My Goals'
-    });
+    // res.render('userGoals', {
+    //     'title': 'My Goals'
+    // });
 
-    db.getUsersGoals();
+    // db.getUsersGoals('daniel');
+    
+
+    db.getUsersGoals('daniel').then((list) => {
+        res.render('userGoals', {
+            'title': 'My Goals',
+            'upcomingGoals': list
+        });
+        console.log('promise resolved');
+    }).catch((err) => {
+        console.log('promise rejected', err);
+    })
 };
 
 exports.add_goal = function(req, res) {
@@ -56,6 +69,8 @@ exports.complete_goal = function(reg, res) {
     res.render('completeGoal', {
         'title': 'Complete Goal'
     });
+
+//do i need a delete goal?
 };
 
 

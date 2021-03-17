@@ -1,4 +1,32 @@
 <html lang="en">
+{{>partials/navbar}}
+<body class="container">
 <head>
-   {{>header}}
+   {{>partials/header}}
 </head>
+
+<form method="post" role="form">
+ <div class="form-group">
+    <label for="goal">Goal</label>
+    <input type="text" class="form-control" id="goal" name="goal" placeholder="Goal Name" required>
+ </div>
+
+<div class="form-group">
+   <label for="start">Start date:</label>
+   <input type="date" id="start" name="trip-start" value="2021-03-17" min="2018-01-01" max="2018-12-31">
+</div>
+
+
+<a href="/addgoal" class="btn btn-primary">
+   add new goal
+</a>
+
+<a href="/mygoals" class="btn btn-primary">
+   cancel
+</a>
+
+
+</body>
+
+{{>partials/footer}}
+</html>

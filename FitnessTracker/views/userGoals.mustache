@@ -1,4 +1,74 @@
 <html lang="en">
+{{>partials/navbar}}
 <head>
-   {{>header}}
+   {{>partials/header}}
 </head>
+
+<body class="container">
+
+    <div class="text-right">
+        <a href="/addgoal" class="btn btn-primary">
+        add new goal
+        </a>
+    </div>
+
+    <div class="card">
+    Compeleted Goals
+        {{#upcomingGoals}}
+            <div class="card-header">
+               Goal: {{goal}}
+            </div>
+            <div class="card-body">
+                <div class="card-text">
+                  No of Reps: {{reps}}
+                </div>
+                <div class="card-text">
+                  Time: {{time}}
+                </div>
+                 <a href="/addgoal" class="btn btn-primary">
+                     Edit Goal
+                  </a>
+                  <a href="/addgoal" class="btn btn-primary">
+                     Complete Goal
+                  </a>
+                  <a href="/addgoal" class="btn btn-primary">
+                     Delete Goal
+                  </a>
+            </div>
+        <hr>
+        {{/upcomingGoals}}
+        {{^upcomingGoals}}
+        </br>
+            No Upcoming Goals Yet
+        {{/upcomingGoals}} 
+    </div>
+
+
+
+    <div class="card">
+    compeleted Goals
+        {{#competedGoals}}
+            <div class="card-header">
+                {{goal}}
+            </div>
+            <div class="card-body">
+                <div class="card-text">
+                    {{reps}}
+                </div>
+                <div class="card-text">
+                    {{time}}
+                </div>
+            </div>
+        <hr>
+        {{/competedGoals}}
+        {{^competedGoals}}
+        </br>
+            no competed Goals yet
+        {{/competedGoals}} 
+    </div>
+
+</body>
+
+{{>partials/footer}}
+
+</html>
