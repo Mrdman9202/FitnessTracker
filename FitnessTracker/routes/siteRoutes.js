@@ -10,6 +10,9 @@ router.get('/addgoal', controller.add_goal);
 router.get('/editgoal', controller.edit_goal);
 router.get('/completegoal', controller.complete_goal);
 
+router.get('/deletegoal/:_id', controller.delete_goal);
+
+
 // router.use(function(req, res) {
 //     res.status(404);
 //     res.send('Oops! We didn\'t find what you are looking for.');

@@ -70,9 +70,18 @@ exports.complete_goal = function(reg, res) {
     res.render('completeGoal', {
         'title': 'Complete Goal'
     });
+};
 
 //do i need a delete goal?
-};
+exports.delete_goal = async (req, res) => {
+    if (!req.params._id) {
+      res.status(400).send('No goal id provided')
+      return
+    }
+  
+    await db.deleteGoal(req.params._id)
+    res.redirect(`/mygoals`)
+}
 
 
 
