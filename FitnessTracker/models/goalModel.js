@@ -30,8 +30,8 @@ class Goals{
             goal: 'Do Weights',
             reps: '10',
             time: 10,
-            isComplete: false
-            // goalDate: new Date()("March 19, 2021 14:15:00")
+            isComplete: false,
+            goalDate: new Date(2021, 3, 18, 12, 30, 0, 0)
         });
 
         console.log('goal : Do Boxing added')
@@ -41,8 +41,8 @@ class Goals{
             goal: 'run',
             reps: 'N/A',
             time: 20,
-            isComplete: false
-            // goalDate: new Date()("March 16, 2021 11:15:00")
+            isComplete: false,
+            goalDate: new Date(2021, 3, 19, 12, 30, 0, 0)
         }); 
 
         console.log('goal : boxing Added')
@@ -52,7 +52,8 @@ class Goals{
                 goal: 'Do Push Ups',
                 reps: '10',
                 time: 10,
-                isComplete: true
+                isComplete: true,
+                goalDate: new Date(2021, 3, 14, 12, 30, 0, 0)
         });
 
         console.log('goal : Do Push Ups added')
@@ -62,35 +63,14 @@ class Goals{
             goal: 'run',
             reps: 'N/A',
             time: 20,
-            isComplete: true
+            isComplete: true,
+            goalDate: new Date(2021, 3, 15, 12, 30, 0, 0)
         }); 
 
         console.log('goal : run Added')
     }; //end of seeding
 
     
-
-    // getUsersGoals() {
-
-    //     //return a Promise object, which can be resolved or rejected
-    //     return new Promise((resolve, reject) => {
-    //         //use the find() function of the database to get the data,
-    //         //error first callback function, err for error, entries for data
-    //         this.db.find({user: 'daniel'}, function(err, goal) {
-    //             //if error occurs reject Promise
-    //             if (err) {
-    //                 reject(err);
-    //                 //if no error resolve the promise & return the data
-    //             } else {
-    //                 resolve(goal);
-    //                 //to see what the returned data looks like
-    //                 console.log('function all() returns: ', goal);
-    //             }
-    //         })
-    //     })
-    // } 
-
-
     getUsersGoals(user){
         
         //return a Promise object, which can be resolved or rejected

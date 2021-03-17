@@ -39,7 +39,8 @@ exports.user_goals = function(reg, res) {
     db.getUsersGoals('daniel').then((list) => {
         res.render('userGoals', {
             'title': 'My Goals',
-            'upcomingGoals': list
+            'upcomingGoals': list.filter(goal => goal.isComplete == false),
+            'completedGoals': list.filter(goal => goal.isComplete == true)
         });
         console.log('promise resolved');
     }).catch((err) => {

@@ -6,14 +6,14 @@
 
 <body class="container">
 
-    <div class="text-right">
+    <div class="text-left">
         <a href="/addgoal" class="btn btn-primary">
-        add new goal
+        Add New Goal
         </a>
     </div>
 
     <div class="card">
-    Compeleted Goals
+    <h2>Upcoming Goals</h2>
         {{#upcomingGoals}}
             <div class="card-header">
                Goal: {{goal}}
@@ -24,6 +24,9 @@
                 </div>
                 <div class="card-text">
                   Time: {{time}}
+                </div>
+                 <div class="card-text">
+                  Goal Date: {{goalDate}}
                 </div>
                  <a href="/addgoal" class="btn btn-primary">
                      Edit Goal
@@ -46,25 +49,34 @@
 
 
     <div class="card">
-    compeleted Goals
-        {{#competedGoals}}
+    <h2>Completed Goals</h2>
+        {{#completedGoals}}
             <div class="card-header">
-                {{goal}}
+                Goal: {{goal}}
             </div>
-            <div class="card-body">
+             <div class="card-body">
                 <div class="card-text">
-                    {{reps}}
+                  No of Reps: {{reps}}
                 </div>
                 <div class="card-text">
-                    {{time}}
+                  Time: {{time}}
                 </div>
+                  <div class="card-text">
+                  Goal Date: {{goalDate}}
+                </div>
+                 <a href="/addgoal" class="btn btn-primary">
+                     Edit Goal
+                  </a>
+                  <a href="/addgoal" class="btn btn-primary">
+                     Delete Goal
+                  </a>
             </div>
         <hr>
-        {{/competedGoals}}
-        {{^competedGoals}}
+        {{/completedGoals}}
+        {{^completedGoals}}
         </br>
             no competed Goals yet
-        {{/competedGoals}} 
+        {{/completedGoals}} 
     </div>
 
 </body>
