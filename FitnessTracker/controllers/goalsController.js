@@ -4,7 +4,7 @@ const db = new goalsDAO();
 exports.landing_page = function(reg, res) {
 
     //runs the DB init function which seeds the DB
-    // db.init();
+    db.init();
 
      res.render('index', {
         'title': 'Home Page'
@@ -48,12 +48,24 @@ exports.user_goals = function(reg, res) {
     })
 };
 
+//GET
 exports.add_goal = function(req, res) {
     // res.send('<h1>Not yet implemented: show add goal page.</h1>');
 
     res.render('addGoal', {
         'title': 'Add Goal'
     });
+};
+
+
+//POST
+exports.post_add_goal = function(req, res) {
+    if (!req.body.goal) {
+        res.status(400).send("goals must have an goal name.");
+        return;
+    }
+    db.addGoal(req.body.goal, req.body.goalDate);
+    res.redirect('/mygoals');
 };
 
 exports.edit_goal = function(reg, res) {

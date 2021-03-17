@@ -11,15 +11,13 @@
     <input type="text" class="form-control" id="goal" name="goal" placeholder="Goal Name" required>
  </div>
 
+ <label for="start">Goal:</label>
+
+<input type="date" id="goalDate" name="goalDate" value="2021-03-17" min="2021-03-17" max="2023-01-01">
+
 <div class="form-group">
-   <label for="start">Start date:</label>
-   <input type="date" id="start" name="trip-start" value="2021-03-17" min="2018-01-01" max="2018-12-31">
+   <input type="submit" value="Add goal" class="btn btn-primary">
 </div>
-
-
-<a href="/addgoal" class="btn btn-primary">
-   add new goal
-</a>
 
 <a href="/mygoals" class="btn btn-primary">
    cancel

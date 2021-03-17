@@ -93,11 +93,37 @@ class Goals{
         }) 
     }
 
+
+    //add goal to DB Function
+    addGoal (goal, goalDate) {
+        var newGoal = {
+          user: 'daniel',
+          goal: goal,
+          rep: 'N/A',
+          time: 'N/A',
+          isComplete: false,
+          goalDate: goalDate
+        };
+
+        this.db.insert(newGoal, function(err, doc) {
+            if (err) {
+                console.log('Error inserting document', goal);
+            } else {
+                console.log('document inserted into the database', doc);
+            }
+        })
+
+        // this.db.insert(newGoal, (err, doc) => {
+        //   err ? console.log('Error inserting document: ', goal) : console.log(`Successfully inserted goal to DB: ${goal}`)
+        // });
+      };
+
+    //delete passed through goals function from DB  
     deleteGoal (id) {
         this.db.remove({ _id: id }, { multi: false }, (err, numOfDocsRemoved) => {
           err ? console.log(`Error deleting goal: ${id}`) : console.log(`${numOfDocsRemoved} Goal removed from db`)
-        })
-    }
+        });
+    };
        
 
 

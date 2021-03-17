@@ -7,6 +7,7 @@ router.get('/register', controller.register);
 router.get('/login', controller.login);
 router.get('/mygoals', controller.user_goals);
 router.get('/addgoal', controller.add_goal);
+router.post('/addgoal', controller.post_add_goal)
 router.get('/editgoal', controller.edit_goal);
 router.get('/completegoal', controller.complete_goal);
 
