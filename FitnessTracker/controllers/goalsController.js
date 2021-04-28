@@ -1,38 +1,70 @@
 const goalsDAO = require('../models/goalModel');
+const userDao = require('../models/userModel.js'); 
 const db = new goalsDAO();
+const auth = require('../auth/auth.js');
+const {ensureLoggedIn} = require('connect-ensure-login'); 
 
-exports.landing_page = function(reg, res) {
+exports.landing_page = function(req, res) {
 
     //runs the DB init function which seeds the DB
     // db.init();
-
      res.render('index', {
-        'title': 'Home Page'
+        'title': 'Home Page',
+        'user': req.user
     });
 };
 
 //register function which has not been implemented yet
-exports.register = function(reg, res) {
+exports.show_register_page = function(req, res) {
 
    res.render('register', {
         'title': 'Register Page'
     });
 };
 
+exports.post_new_user = function(req, res) {
+    const user = req.body.username;
+    const name = req.body.name;
+    const password = req.body.pass;
+    //console.log("register user", user, "password", password);
+    if (!user || !name || !password) {
+        res.send(401, 'no user, no name or no password');
+        return;
+    }
+    userDao.lookup(user, function(err, u) {
+        if (u) {
+            res.send(401, "User exists:", user);
+            return;
+        }
+    userDao.create(user, name, password);
+    res.redirect('/login');
+    });
+};
+
 //login function which has not been implemented yet
-exports.login = function(reg, res) {
+exports.show_login_page = function(req, res) {
     
     res.render('login', {
         'title': 'Login'
     });
 };
 
-//loads the selected users goals from the DB, will be improved when the login and register is implemented 
-exports.user_goals = function(reg, res) {
+exports.post_login = function(req, res) {
+    res.redirect("/mygoals");
+};
 
-    db.getUsersGoals('daniel').then((list) => {
+exports.logout = function(req, res) {
+    req.logout();
+    res.redirect("/");
+}; 
+
+//loads the selected users goals from the DB, will be improved when the login and register is implemented 
+exports.user_goals = function(req, res) {
+
+    db.getUsersGoals(req.user).then((list) => {
         res.render('userGoals', {
             'title': 'My Goals',
+            'user': req.user,
             'upcomingGoals': list.filter(goal => goal.isComplete == false),
             'completedGoals': list.filter(goal => goal.isComplete == true)
         });
@@ -47,10 +79,10 @@ exports.user_goals = function(reg, res) {
 exports.add_goal = function(req, res) {
 
     res.render('addGoal', {
-        'title': 'Add Goal'
+        'title': 'Add Goal',
+        'user': req.user,
     });
 };
-
 
 //POST
 //passes the parameters to the add goal method
@@ -59,7 +91,7 @@ exports.post_add_goal = function(req, res) {
         res.status(400).send("goals must have an goal name.");
         return;
     };
-    db.addGoal(req.body.goal, req.body.goalDate);
+    db.addGoal(req.user, req.body.goal, req.body.goalDate);
     res.redirect('/mygoals');
 };
 
@@ -69,6 +101,7 @@ exports.edit_goal = async (req, res) => {
     const id = req.params._id
     const goals = await db.getGoalById(id)
     res.render('editGoal', {
+      'user': req.user,
       'goal': goals.goal,
       'goalDate' : goals.goalDate
     });;
@@ -93,6 +126,7 @@ exports.complete_goal = async (req, res) => {
     const id = req.params._id
     const goals = await db.getGoalById(id)
     res.render('completeGoal', {
+      'user': req.user,
       'goal': goals.goal,
       'goalDate' : goals.goalDate,
       'reps': goals.reps,

@@ -2,33 +2,30 @@ const express = require('express');
 const router = express.Router(); 
 const controller = require('../controllers/goalsController');
 
+const auth = require('../auth/auth.js');
+const {ensureLoggedIn} = require('connect-ensure-login'); 
+
 router.get('/', controller.landing_page);
-router.get('/register', controller.register);
-router.get('/login', controller.login);
-router.get('/mygoals', controller.user_goals);
-router.get('/addgoal', controller.add_goal);
-router.post('/addgoal', controller.post_add_goal);
 
-router.get('/editgoal/:_id', controller.edit_goal);
-router.post('/editgoal/:_id', controller.post_edit_goal);
+router.get('/register', controller.show_register_page);
+router.post('/register', controller.post_new_user); 
 
-router.get('/completegoal/:_id', controller.complete_goal);
-router.post('/completegoal/:_id', controller.post_complete_goal);
+router.get('/login', controller.show_login_page);
+router.post("/login", auth.authorize("/login"), controller.post_login); 
 
+router.get("/logout", controller.logout); 
 
-router.get('/deletegoal/:_id', controller.delete_goal);
+router.get('/mygoals', ensureLoggedIn('/login'), controller.user_goals);
 
+router.get('/addgoal', ensureLoggedIn('/login'), controller.add_goal);
+router.post('/addgoal', ensureLoggedIn('/login'), controller.post_add_goal);
 
-// router.use(function(req, res) {
-//     res.status(404);
-//     res.send('Oops! We didn\'t find what you are looking for.');
-// });
+router.get('/editgoal/:_id', ensureLoggedIn('/login'), controller.edit_goal);
+router.post('/editgoal/:_id', ensureLoggedIn('/login'), controller.post_edit_goal);
 
-// router.use(function(err, req, res, next) {
-//     res.status(500);
-//     res.type('text/plain');
-//     res.send('Internal Server Error.');
-// });
-   
+router.get('/completegoal/:_id', ensureLoggedIn('/login'), controller.complete_goal);
+router.post('/completegoal/:_id', ensureLoggedIn('/login'), controller.post_complete_goal);
+
+router.get('/deletegoal/:_id', ensureLoggedIn('/login'), controller.delete_goal);
 
 module.exports = router;

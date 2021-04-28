@@ -1,7 +1,6 @@
 //import the nedb module
 const nedb = require('nedb');
 
-
 class Goals{
 
   //constructir that creates the embedded DB
@@ -9,24 +8,14 @@ class Goals{
 
       this.db = new nedb({ filename: 'goals.db', autoload: true });
       console.log('goals db created in embedded mode');
-
-      this.dbUsers = new nedb({ filename: 'users.db', autoload: true});
-      console.log('users db created in embedded mode');    
+  
   }; 
 
   // Seed the database
   init () {
 
-      this.dbUsers.insert({
-          username: 'dan the man',
-          name: 'Daniel',
-          passwordHash: 'yo'
-      });
-
-      console.log('user : Daniel Added')
-
       this.db.insert({
-          user: 'daniel',
+          user: 'dan the man',
           goal: 'Do Weights',
           reps: '10',
           time: 10,
@@ -37,7 +26,7 @@ class Goals{
       console.log('goal : Do Boxing added')
 
       this.db.insert({
-          user: 'daniel',
+          user: 'dan the man',
           goal: 'run',
           reps: 'N/A',
           time: 20,
@@ -48,7 +37,7 @@ class Goals{
       console.log('goal : boxing Added')
 
       this.db.insert({
-              user: 'daniel',
+              user: 'dan the man',
               goal: 'Do Push Ups',
               reps: '10',
               time: 10,
@@ -59,7 +48,7 @@ class Goals{
       console.log('goal : Do Push Ups added')
 
       this.db.insert({
-          user: 'daniel',
+          user: 'dan the man',
           goal: 'run',
           reps: 'N/A',
           time: 20,
@@ -95,9 +84,9 @@ class Goals{
 
 
   //add goal to DB Function using the passed through goal and date
-  addGoal (goal, goalDate) {
+  addGoal (user, goal, goalDate) {
       var newGoal = {
-        user: 'daniel',
+        user: user,
         goal: goal,
         rep: 'N/A',
         time: 'N/A',

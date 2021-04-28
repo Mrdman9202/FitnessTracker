@@ -3,7 +3,14 @@
         <span class="navbar-brand mb-0 h1">
         <a class="text-decoration-none navbar-text"href="/">Home</a></span>
         <a class="text-decoration-none navbar-text"href="/mygoals">My Goals</a></span>
-        <a class="text-decoration-none navbar-text"href="/login">Login</a></span>
-        <a class="text-decoration-none navbar-text"href="/register">Register</a></span>                  
+
+        {{^user}}
+            <a class="text-decoration-none navbar-text"href="/login">Login</a></span>
+            <a class="text-decoration-none navbar-text"href="/register">Register</a></span>   
+        {{/user}}
+        {{#user}}
+            <a class="text-decoration-none navbar-text"href="/logout">Sign out</a></span>
+        {{/user}}
+
     </div>
 </nav>
