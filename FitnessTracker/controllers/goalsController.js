@@ -3,6 +3,7 @@ const userDao = require('../models/userModel.js');
 const db = new goalsDAO();
 const auth = require('../auth/auth.js');
 const {ensureLoggedIn} = require('connect-ensure-login'); 
+const Goals = require('../models/goalModel');
 
 exports.landing_page = function(req, res) {
 
@@ -91,7 +92,7 @@ exports.post_add_goal = function(req, res) {
         res.status(400).send("goals must have an goal name.");
         return;
     };
-    db.addGoal(req.user, req.body.goal, req.body.goalDate);
+    db.addGoal(req.user, req.body.goal, req.body.goalDate, req.body.exReps, req.body.exTime);
     res.redirect('/mygoals');
 };
 
@@ -103,7 +104,9 @@ exports.edit_goal = async (req, res) => {
     res.render('editGoal', {
       'user': req.user,
       'goal': goals.goal,
-      'goalDate' : goals.goalDate
+      'goalDate' : goals.goalDate,
+      'exReps': goals.exReps,
+      'exTime': goals.exTime
     });;
   }
 
@@ -116,7 +119,7 @@ exports.post_edit_goal = function(req, res) {
         return
       }
   
-      db.updateGoal(req.params._id, req.body.goal, req.body.goalDate)
+      db.updateGoal(req.params._id, req.body.goal, req.body.goalDate, req.body.exReps, req.body.exTime)
       res.redirect(`/mygoals`)
 };
 
@@ -129,6 +132,8 @@ exports.complete_goal = async (req, res) => {
       'user': req.user,
       'goal': goals.goal,
       'goalDate' : goals.goalDate,
+      'exReps': goals.exReps,
+      'exTime': goals.exTime,
       'reps': goals.reps,
       'time': goals.time
     })

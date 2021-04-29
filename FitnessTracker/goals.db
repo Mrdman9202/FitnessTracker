@@ -1,4 +1,6 @@
-{"user":{"user":"test","name":"tester","password":"$2b$10$9tGbVMXRI485n/oCQZYj1ONhJVRnJipg3Qx9VX.d7t1h9oteGeGKe","_id":"BpA5L6EQ2KWgUHT5"},"goal":"wefewfefw","rep":"N/A","time":"123","isComplete":true,"goalDate":"2021-03-17","_id":"1rsrfnbmPTzZU3ZN","reps":"123"}
-{"user":{"user":"test2","name":"test2","password":"$2b$10$AFjUJ9T7EDens2ouNLGkiOluAtbqvrzHpd1h9xXv29Pka6s2ovPyC","_id":"eOzRbcpOttlWKkrd"},"goal":"werwerw","rep":"N/A","time":"N/A","isComplete":false,"goalDate":"2021-03-17","_id":"9oC3KC2PXkxzFHQY"}
-{"user":"daniel","goal":"sdfdsf","rep":"N/A","time":"N/A","isComplete":false,"goalDate":"2021-03-17","_id":"BIuN1KVotWhZfBaC"}
-{"user":"daniel","goal":"werwer","rep":"N/A","time":"N/A","isComplete":false,"goalDate":"2021-03-17","_id":"YfzwbljxdIB2K8To"}
+{"user":"dan the man","goal":"run","exReps":2,"exTime":4,"reps":1,"time":20,"isComplete":false,"goalDate":{"$$date":1618786800000},"_id":"B9Wrd1prlLZPdT3u"}
+{"user":"dan the man","goal":"Do Push Ups","exReps":2,"exTime":4,"reps":10,"time":10,"isComplete":true,"goalDate":{"$$date":1618354800000},"_id":"JTICTOmKi6RtIoIv"}
+{"user":{"user":"test","name":"daniel","password":"$2b$10$fo7VK2B.BYhkbiFgk0YlOOWg.hZ3dYBF/bdncOXhMgEiaoLNce0Fy","_id":"jXwJKAUzVEO59JQz"},"goal":"test","exReps":"23","exTime":"23","rep":"N/A","time":"N/A","isComplete":false,"goalDate":"2021-03-17","_id":"Mo2LaR420HI26MHC"}
+{"user":{"user":"test","name":"daniel","password":"$2b$10$fo7VK2B.BYhkbiFgk0YlOOWg.hZ3dYBF/bdncOXhMgEiaoLNce0Fy","_id":"jXwJKAUzVEO59JQz"},"goal":"test","exReps":"1","exTime":"7","rep":"N/A","time":"8","isComplete":true,"goalDate":"2021-03-20","_id":"QYwGfM7DjAFFzpQW","reps":"4"}
+{"user":"dan the man","goal":"run","exReps":2,"exTime":4,"reps":1,"time":20,"isComplete":true,"goalDate":{"$$date":1618441200000},"_id":"aZWGYAoXWPu2wHQl"}
+{"user":"dan the man","goal":"Do Weights","exReps":2,"exTime":4,"reps":10,"time":10,"isComplete":false,"goalDate":{"$$date":1618700400000},"_id":"uODns3TaTZTrvvUN"}

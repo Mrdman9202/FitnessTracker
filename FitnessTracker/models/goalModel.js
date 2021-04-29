@@ -17,7 +17,9 @@ class Goals{
       this.db.insert({
           user: 'dan the man',
           goal: 'Do Weights',
-          reps: '10',
+          exReps:2,
+          exTime: 4,
+          reps: 10,
           time: 10,
           isComplete: false,
           goalDate: new Date(2021, 3, 18)
@@ -28,7 +30,9 @@ class Goals{
       this.db.insert({
           user: 'dan the man',
           goal: 'run',
-          reps: 'N/A',
+          exReps:2,
+          exTime: 4,
+          reps: 1,
           time: 20,
           isComplete: false,
           goalDate: new Date(2021, 3, 19)
@@ -39,7 +43,9 @@ class Goals{
       this.db.insert({
               user: 'dan the man',
               goal: 'Do Push Ups',
-              reps: '10',
+              exReps:2,
+              exTime: 4,
+              reps: 10,
               time: 10,
               isComplete: true,
               goalDate: new Date(2021, 3, 14)
@@ -50,7 +56,9 @@ class Goals{
       this.db.insert({
           user: 'dan the man',
           goal: 'run',
-          reps: 'N/A',
+          exReps:2,
+          exTime: 4,
+          reps: 1,
           time: 20,
           isComplete: true,
           goalDate: new Date(2021, 3, 15)
@@ -84,10 +92,12 @@ class Goals{
 
 
   //add goal to DB Function using the passed through goal and date
-  addGoal (user, goal, goalDate) {
+  addGoal (user, goal, goalDate, exReps, exTime) {
       var newGoal = {
         user: user,
         goal: goal,
+        exReps: exReps,
+        exTime: exTime,
         rep: 'N/A',
         time: 'N/A',
         isComplete: false,
@@ -104,8 +114,8 @@ class Goals{
     };
 
     //updated the passed through goal in the DB
-    updateGoal (id, goal, goalDate) {
-      this.db.update({ _id: id }, { $set: { goal: goal, goalDate: goalDate } }, (err, numUpdated) => {
+    updateGoal (id, goal, goalDate, exReps, exTime) {
+      this.db.update({ _id: id }, { $set: { goal: goal, goalDate: goalDate, exReps: exReps, exTime: exTime} }, (err, numUpdated) => {
         err ? console.log(`Error updating goal: ${id}`) : console.log(`${numUpdated} Goal updated in db`)
       })
     }

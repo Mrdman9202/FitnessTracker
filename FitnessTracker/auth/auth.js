@@ -18,8 +18,7 @@ exports.init = function(app) {
                     return cb(null, false);
                 }
                 //compare provided password with that in the database
-                bcrypt.compare(password, user.password,
-function(err, result) {
+                bcrypt.compare(password, user.password, function(err, result) {
                     if (result) {
                         cb(null, user);
                     } else {

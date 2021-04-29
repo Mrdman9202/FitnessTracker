@@ -5,26 +5,12 @@ const saltRounds = 10;
 
 class UserDAO {
     constructor(dbFilePath) {
-        // if (dbFilePath) {
-        //     //embedded
-        //     this.db = new Datastore({ filename: dbFilePath, autoload: true });
-        // } else {
-        //     //in memory
-        //     this.db = new Datastore();
-        // }
-
       this.db = new Datastore({ filename: 'users.db', autoload: true});
       console.log('users db created in embedded mode');  
     }
 
     // for the demo the password is the bcrypt of the user name
     init() {
-        // this.db.insert({
-        //     user: 'Peter',
-        //     password: '$2b$10$I82WRFuGghOMjtu3LLZW9OAMrmYOlMZjEEkh.vx.K2MM05iu5hY2C'
-        // });
-        // //console.log('user record inserted in init');
-
         this.db.insert({
             username: 'dan the man',
             name: 'daniel',
