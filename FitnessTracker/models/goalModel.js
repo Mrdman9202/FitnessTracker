@@ -11,61 +11,62 @@ class Goals{
   
   }; 
 
-  // Seed the database
-  init () {
+  //the user: 'test' doesnt actually add the goals to the created user 'tests'
+  // // Seed the database
+  // init () {
 
-      this.db.insert({
-          user: 'dan the man',
-          goal: 'Do Weights',
-          exReps:2,
-          exTime: 4,
-          reps: 10,
-          time: 10,
-          isComplete: false,
-          goalDate: new Date(2021, 3, 18)
-      });
+  //     this.db.insert({
+  //         user: 'test',
+  //         goal: 'Do Weights',
+  //         exReps:2,
+  //         exTime: 4,
+  //         reps: 10,
+  //         time: 10,
+  //         isComplete: false,
+  //         goalDate: new Date(2021, 3, 18)
+  //     });
 
-      console.log('goal : Do Boxing added')
+  //     console.log('goal : Do Boxing added')
 
-      this.db.insert({
-          user: 'dan the man',
-          goal: 'run',
-          exReps:2,
-          exTime: 4,
-          reps: 1,
-          time: 20,
-          isComplete: false,
-          goalDate: new Date(2021, 3, 19)
-      }); 
+  //     this.db.insert({
+  //         user: 'test',
+  //         goal: 'run',
+  //         exReps:2,
+  //         exTime: 4,
+  //         reps: 1,
+  //         time: 20,
+  //         isComplete: false,
+  //         goalDate: new Date(2021, 3, 19)
+  //     }); 
 
-      console.log('goal : boxing Added')
+  //     console.log('goal : boxing Added')
 
-      this.db.insert({
-              user: 'dan the man',
-              goal: 'Do Push Ups',
-              exReps:2,
-              exTime: 4,
-              reps: 10,
-              time: 10,
-              isComplete: true,
-              goalDate: new Date(2021, 3, 14)
-      });
+  //     this.db.insert({
+  //             user: 'test',
+  //             goal: 'Do Push Ups',
+  //             exReps:2,
+  //             exTime: 4,
+  //             reps: 10,
+  //             time: 10,
+  //             isComplete: true,
+  //             goalDate: new Date(2021, 3, 14)
+  //     });
 
-      console.log('goal : Do Push Ups added')
+  //     console.log('goal : Do Push Ups added')
 
-      this.db.insert({
-          user: 'dan the man',
-          goal: 'run',
-          exReps:2,
-          exTime: 4,
-          reps: 1,
-          time: 20,
-          isComplete: true,
-          goalDate: new Date(2021, 3, 15)
-      }); 
+  //     this.db.insert({
+  //         user: 'test',
+  //         goal: 'run',
+  //         exReps:2,
+  //         exTime: 4,
+  //         reps: 1,
+  //         time: 20,
+  //         isComplete: true,
+  //         goalDate: new Date(2021, 3, 15)
+  //     }); 
 
-      console.log('goal : run Added')
-  }; //end of seeding
+  //     console.log('goal : run Added')
+  //}; //end of seeding
 
   //gets the users goals from the DB using the passed through user  
   getUsersGoals(user){

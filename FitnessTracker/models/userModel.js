@@ -12,9 +12,9 @@ class UserDAO {
     // for the demo the password is the bcrypt of the user name
     init() {
         this.db.insert({
-            username: 'dan the man',
+            user: 'test',
             name: 'daniel',
-            password: '$2b$10$I82WRFuGghOMjtu3LLZW9OAMrmYOlMZjEEkh.vx.K2MM05iu5hY2C'
+            password: '$2b$10$fo7VK2B.BYhkbiFgk0YlOOWg.hZ3dYBF/bdncOXhMgEiaoLNce0Fy'
         });
   
         console.log('user : Daniel Added')
