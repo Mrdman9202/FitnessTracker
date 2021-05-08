@@ -19,7 +19,7 @@
                     class="bi bi-arrow-left"></i> {{previousWeek}}</a>
         </li>
         <li class="page-item active" aria-current="page">
-            <a class="page-link" href="/mygoals/{{previousWeek}}">This Week</a>
+            <a class="page-link" href="/mygoals/{{thisWeek}}">This Week</a>
         </li>
         <li class="page-item">
             <a class="page-link" href="/mygoals/{{nextWeek}}">{{nextWeek}} <i class="bi bi-arrow-right"></i></a>
@@ -45,10 +45,7 @@
                 </div>
                 <div class="card-text">
                   Expected Time(Minutes): {{exTime}}
-                </div>
-                 <div class="card-text">
-                  Goal Day: {{goalDay}}
-                </div>
+                </div>    
                  <a href="/editgoal/{{_id}}/{{currentWeek}}" class="btn btn-primary">
                      Edit Goal
                   </a>

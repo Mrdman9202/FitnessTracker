@@ -91,9 +91,8 @@ class Goals{
       }) 
   }
 
-
   //add goal to DB Function using the passed through goal and date
-  addGoal (user, goal, goalDay, exReps, exTime, weekNumber) {
+  addGoal (user, goal, exReps, exTime, weekNumber) {
       var newGoal = {
         user: user,
         goal: goal,
@@ -102,7 +101,6 @@ class Goals{
         rep: 0,
         time: 0,
         isComplete: false,
-        goalDay: goalDay,
         weekNumber: Number(weekNumber)
       };
 
@@ -116,8 +114,8 @@ class Goals{
     };
 
     //updated the passed through goal in the DB
-    updateGoal (id, goal, goalDay, exReps, exTime) {
-      this.db.update({ _id: id }, { $set: { goal: goal, goalDate: goalDay, exReps: exReps, exTime: exTime} }, (err, numUpdated) => {
+    updateGoal (id, goal, exReps, exTime) {
+      this.db.update({ _id: id }, { $set: { goal: goal, exReps: exReps, exTime: exTime} }, (err, numUpdated) => {
         err ? console.log(`Error updating goal: ${id}`) : console.log(`${numUpdated} Goal updated in db`)
       })
     }

@@ -66,24 +66,8 @@ exports.logout = function(req, res) {
     res.redirect("/");
 }; 
 
-// //old
 //loads the signed in users goals from the DB
-// exports.user_goals = function(req, res) {
 
-//     db.getUsersGoals(req.user).then((list) => {
-//         res.render('userGoals', {
-//             'title': 'My Goals',
-//             'user': req.user,
-//             'upcomingGoals': list.filter(goal => goal.isComplete == false),
-//             'completedGoals': list.filter(goal => goal.isComplete == true)
-//         });
-//         console.log('promise resolved');
-//     }).catch((err) => {
-//         console.log('promise rejected', err);
-//     })
-// };
-
-//new
 exports.user_goals_by_week = async (req, res) => {
 
     const today = new Moment()
@@ -131,7 +115,7 @@ exports.post_add_goal = function(req, res) {
         res.status(400).send("goals must have an goal name.");
         return;
     };
-    db.addGoal(req.user, req.body.goal, req.body.goalDate, req.body.exReps, req.body.exTime, req.params.currentWeek);
+    db.addGoal(req.user, req.body.goal, req.body.exReps, req.body.exTime, req.params.currentWeek);
     res.redirect(`/mygoals/${req.params.currentWeek}`)
 };
 
