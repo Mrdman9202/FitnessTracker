@@ -143,7 +143,7 @@ exports.post_edit_goal = function(req, res) {
       }
   
       db.updateGoal(req.params._id, req.body.goal, req.body.goalDate, req.body.exReps, req.body.exTime)
-      res.redirect(`/mygoals`)
+      res.redirect(`/mygoals/${req.params.currentWeek}`)
 };
 
 //GET
@@ -168,7 +168,7 @@ exports.complete_goal = async (req, res) => {
 exports.post_complete_goal = function(req, res) {
  
       db.compelteGoal(req.params._id, req.body.reps, req.body.time);
-      res.redirect(`/mygoals`);
+      res.redirect(`/mygoals/${req.params.currentWeek}`)
 };
 
 //calls the delete goal method and passes through an ID
@@ -179,7 +179,7 @@ exports.delete_goal = async (req, res) => {
     };
   
     await db.deleteGoal(req.params._id);
-    res.redirect(`/mygoals`);
+    res.redirect(`/mygoals/${req.params.currentWeek}`)
 };
 
 

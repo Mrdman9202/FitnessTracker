@@ -1,2 +1,9 @@
 {"user":{"user":"test","name":"daniel","password":"$2b$10$fo7VK2B.BYhkbiFgk0YlOOWg.hZ3dYBF/bdncOXhMgEiaoLNce0Fy","_id":"0FN6NIa2y483F1AG"},"goal":"test","exTime":"4","rep":0,"time":0,"isComplete":false,"weekNumber":5,"_id":"FXI8mc50TJeiqofD"}
-{"user":{"user":"test","name":"daniel","password":"$2b$10$fo7VK2B.BYhkbiFgk0YlOOWg.hZ3dYBF/bdncOXhMgEiaoLNce0Fy","_id":"0FN6NIa2y483F1AG"},"goal":"test","exReps":"2","exTime":"2","rep":0,"time":0,"isComplete":false,"weekNumber":18,"_id":"rmjOacDw5UOQ4PQj"}
+{"user":{"user":"test","name":"daniel","password":"$2b$10$fo7VK2B.BYhkbiFgk0YlOOWg.hZ3dYBF/bdncOXhMgEiaoLNce0Fy","_id":"0FN6NIa2y483F1AG"},"goal":"test","exTime":"2","rep":0,"time":0,"isComplete":false,"weekNumber":18,"_id":"rmjOacDw5UOQ4PQj"}
+{"user":{"user":"test","name":"daniel","password":"$2b$10$fo7VK2B.BYhkbiFgk0YlOOWg.hZ3dYBF/bdncOXhMgEiaoLNce0Fy","_id":"0FN6NIa2y483F1AG"},"goal":"test","exReps":"2","exTime":"3","rep":0,"time":0,"isComplete":false,"weekNumber":18,"_id":"xe3oW288iKwXG9th"}
+{"user":{"user":"test","name":"daniel","password":"$2b$10$fo7VK2B.BYhkbiFgk0YlOOWg.hZ3dYBF/bdncOXhMgEiaoLNce0Fy","_id":"0FN6NIa2y483F1AG"},"goal":"tester","exTime":"2","rep":0,"time":0,"isComplete":false,"weekNumber":18,"_id":"xe3oW288iKwXG9th"}
+{"user":{"user":"test","name":"daniel","password":"$2b$10$fo7VK2B.BYhkbiFgk0YlOOWg.hZ3dYBF/bdncOXhMgEiaoLNce0Fy","_id":"0FN6NIa2y483F1AG"},"goal":"test","exTime":"2","rep":0,"time":"4","isComplete":true,"weekNumber":18,"_id":"rmjOacDw5UOQ4PQj","reps":"3"}
+{"user":{"user":"test","name":"daniel","password":"$2b$10$fo7VK2B.BYhkbiFgk0YlOOWg.hZ3dYBF/bdncOXhMgEiaoLNce0Fy","_id":"0FN6NIa2y483F1AG"},"goal":"yo","exReps":"4","exTime":"5","rep":0,"time":0,"isComplete":false,"weekNumber":19,"_id":"Dpr0CRuzFQVF1COW"}
+{"user":{"user":"test","name":"daniel","password":"$2b$10$fo7VK2B.BYhkbiFgk0YlOOWg.hZ3dYBF/bdncOXhMgEiaoLNce0Fy","_id":"0FN6NIa2y483F1AG"},"goal":"yo","exTime":"5","rep":0,"time":0,"isComplete":false,"weekNumber":19,"_id":"Dpr0CRuzFQVF1COW"}
+{"$$deleted":true,"_id":"Dpr0CRuzFQVF1COW"}
+{"$$deleted":true,"_id":"xe3oW288iKwXG9th"}

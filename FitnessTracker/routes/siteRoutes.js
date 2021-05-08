@@ -24,24 +24,16 @@ router.get('/mygoals/:previousWeek', ensureLoggedIn('/login'), controller.user_g
 
 router.get('/mygoals/:nextWeek', ensureLoggedIn('/login'), controller.user_goals_by_week)
 
-//to be implemneted
 router.get('/addgoal/:currentWeek', ensureLoggedIn('/login'), controller.add_goal)
 router.post('/addgoal/:currentWeek', ensureLoggedIn('/login'), controller.post_add_goal)
 
-//old
-// router.get('/editgoal/:_id', ensureLoggedIn('/login'), controller.edit_goal);
-// router.post('/editgoal/:_id', ensureLoggedIn('/login'), controller.post_edit_goal);
+router.get('/editgoal/:_id/:currentWeek', ensureLoggedIn('/login'), controller.edit_goal)
+router.post('/editgoal/:_id/:currentWeek', ensureLoggedIn('/login'), controller.post_edit_goal)
 
-//to be implemneted
-router.get('/update/:_id/:currentWeek', ensureLoggedIn('/login'), controller.edit_goal)
-router.post('/update/:_id/:currentWeek', ensureLoggedIn('/login'), controller.post_edit_goal)
+router.get('/completegoal/:_id/:currentWeek', ensureLoggedIn('/login'), controller.complete_goal);
+router.post('/completegoal/:_id/:currentWeek', ensureLoggedIn('/login'), controller.post_complete_goal);
 
-//old
-// router.get('/completegoal/:_id/:currentWeek', ensureLoggedIn('/login'), controller.complete_goal);
-// router.post('/completegoal/:_id/:currentWeek', ensureLoggedIn('/login'), controller.post_complete_goal);
-
-//old
-// router.get('/deletegoal/:_id'/:currentWeek', ensureLoggedIn('/login'), controller.delete_goal);
+router.get('/deletegoal/:_id/:currentWeek', ensureLoggedIn('/login'), controller.delete_goal);
 
 //-------------------------------------------------------------------------------------
 
