@@ -75,6 +75,33 @@ exports.user_goals_by_week = async (req, res) => {
     const previousWeek = Number(currentWeek) - 1
     const nextWeek = Number(currentWeek) + 1
     today.isoWeek(currentWeek)
+    await db.getUserGoalsByWeekNumber(req.user, currentWeek).then(listOfAllGoals => {
+      res.render('userGoals', {
+        'user': req.user,
+        'upcomingGoals': listOfAllGoals.filter(goal => goal.isComplete === false),
+        'completedGoals': listOfAllGoals.filter(goal => goal.isComplete === true),
+        'currentWeek': Number(currentWeek),
+        // 'currentWeek2': currentWeek2,
+        'previousWeek': previousWeek,
+        'nextWeek': nextWeek,
+        'fromDate': today.startOf('isoWeek').format('ddd D MMM').toString(),
+        'toDate': today.endOf('isoWeek').format('ddd D MMM').toString(),
+        'thisWeek': Moment().isoWeek()
+      })
+      console.log('Promise resolved')
+    }).catch(err => {
+      console.log(`Promise rejected: ${err}`)
+    })
+  }
+
+  //public goals
+  exports.public_goals_by_week = async (req, res) => {
+
+    const today = new Moment()
+    const currentWeek = req.params.currentWeek
+    const previousWeek = Number(currentWeek) - 1
+    const nextWeek = Number(currentWeek) + 1
+    today.isoWeek(currentWeek)
     await db.getGoalsByWeekNumber(currentWeek).then(listOfAllGoals => {
       res.render('userGoals', {
         'user': req.user,

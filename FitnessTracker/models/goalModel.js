@@ -135,9 +135,16 @@ class Goals{
     })
   }
 
+  getUserGoalsByWeekNumber (user, weekNumber) {
+    return new Promise((resolve, reject) => {
+      this.db.find({ user: user, weekNumber: Number(weekNumber) }, (err, entries) => {
+        err ? reject(err) : resolve(entries)
+      })
+    })
+  }
 
-  //may need this
-  getGoalsByWeekNumber (weekNumber) {
+  //
+  getPublicGoalsByWeekNumber (weekNumber) {
     return new Promise((resolve, reject) => {
       this.db.find({ weekNumber: Number(weekNumber) }, (err, entries) => {
         err ? reject(err) : resolve(entries)

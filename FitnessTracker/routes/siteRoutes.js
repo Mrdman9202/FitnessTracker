@@ -20,6 +20,10 @@ router.get(`/mygoals/:currentWeek`, ensureLoggedIn('/login'), controller.user_go
 
 router.get('/mygoals/:previousWeek', ensureLoggedIn('/login'), controller.user_goals_by_week)
 
+router.get(`/publicGoals/:currentWeek`, ensureLoggedIn('/login'), controller.public_goals_by_week)
+
+router.get('/mygoals/:previousWeek', ensureLoggedIn('/login'), controller.user_goals_by_week)
+
 router.get('/mygoals/:nextWeek', ensureLoggedIn('/login'), controller.user_goals_by_week)
 
 router.get('/addgoal/:currentWeek', ensureLoggedIn('/login'), controller.add_goal)
