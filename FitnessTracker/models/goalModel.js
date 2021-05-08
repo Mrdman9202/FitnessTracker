@@ -27,45 +27,6 @@ class Goals{
   //     });
 
   //     console.log('goal : Do Boxing added')
-
-  //     this.db.insert({
-  //         user: 'test',
-  //         goal: 'run',
-  //         exReps:2,
-  //         exTime: 4,
-  //         reps: 1,
-  //         time: 20,
-  //         isComplete: false,
-  //         goalDate: new Date(2021, 3, 19)
-  //     }); 
-
-  //     console.log('goal : boxing Added')
-
-  //     this.db.insert({
-  //             user: 'test',
-  //             goal: 'Do Push Ups',
-  //             exReps:2,
-  //             exTime: 4,
-  //             reps: 10,
-  //             time: 10,
-  //             isComplete: true,
-  //             goalDate: new Date(2021, 3, 14)
-  //     });
-
-  //     console.log('goal : Do Push Ups added')
-
-  //     this.db.insert({
-  //         user: 'test',
-  //         goal: 'run',
-  //         exReps:2,
-  //         exTime: 4,
-  //         reps: 1,
-  //         time: 20,
-  //         isComplete: true,
-  //         goalDate: new Date(2021, 3, 15)
-  //     }); 
-
-  //     console.log('goal : run Added')
   //}; //end of seeding
 
   //gets the users goals from the DB using the passed through user  
@@ -101,7 +62,8 @@ class Goals{
         rep: 0,
         time: 0,
         isComplete: false,
-        weekNumber: Number(weekNumber)
+        weekNumber: Number(weekNumber),
+        isPublic: false
       };
 
       this.db.insert(newGoal, function(err, doc) {
@@ -126,6 +88,19 @@ class Goals{
         err ? console.log(`Error deleting goal: ${id}`) : console.log(`${numOfDocsRemoved} Goal removed from db`)
       });
   };
+
+  makePublic (id, ) {
+    this.db.update({ _id: id }, { $set: { isPublic: true} }, (err, numUpdated) => {
+      err ? console.log(`Error updating goal: ${id}`) : console.log(`${numUpdated} Goal updated in db`)
+    })
+  }
+
+  
+  makeUnpublic (id, ) {
+    this.db.update({ _id: id }, { $set: { isPublic: false} }, (err, numUpdated) => {
+      err ? console.log(`Error updating goal: ${id}`) : console.log(`${numUpdated} Goal updated in db`)
+    })
+  }
       
   
   //completes the passed through goal  
@@ -146,7 +121,7 @@ class Goals{
   //
   getPublicGoalsByWeekNumber (weekNumber) {
     return new Promise((resolve, reject) => {
-      this.db.find({ weekNumber: Number(weekNumber) }, (err, entries) => {
+      this.db.find({ weekNumber: Number(weekNumber), isPublic: true }, (err, entries) => {
         err ? reject(err) : resolve(entries)
       })
     })

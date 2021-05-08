@@ -20,7 +20,7 @@ router.get(`/mygoals/:currentWeek`, ensureLoggedIn('/login'), controller.user_go
 
 router.get('/mygoals/:previousWeek', ensureLoggedIn('/login'), controller.user_goals_by_week)
 
-router.get(`/publicGoals/:currentWeek`, ensureLoggedIn('/login'), controller.public_goals_by_week)
+router.get(`/publicWeeklyGoals/:currentWeek`, ensureLoggedIn('/login'), controller.public_goals_by_week)
 
 router.get('/mygoals/:previousWeek', ensureLoggedIn('/login'), controller.user_goals_by_week)
 
@@ -36,5 +36,10 @@ router.get('/completegoal/:_id/:currentWeek', ensureLoggedIn('/login'), controll
 router.post('/completegoal/:_id/:currentWeek', ensureLoggedIn('/login'), controller.post_complete_goal);
 
 router.get('/deletegoal/:_id/:currentWeek', ensureLoggedIn('/login'), controller.delete_goal);
+
+router.get('/makePublic/:_id/:currentWeek', ensureLoggedIn('/login'), controller.make_public);
+
+
+router.get('/makeUnpublic/:_id/:currentWeek', ensureLoggedIn('/login'), controller.make_unpublic);
 
 module.exports = router;

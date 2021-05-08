@@ -81,7 +81,6 @@ exports.user_goals_by_week = async (req, res) => {
         'upcomingGoals': listOfAllGoals.filter(goal => goal.isComplete === false),
         'completedGoals': listOfAllGoals.filter(goal => goal.isComplete === true),
         'currentWeek': Number(currentWeek),
-        // 'currentWeek2': currentWeek2,
         'previousWeek': previousWeek,
         'nextWeek': nextWeek,
         'fromDate': today.startOf('isoWeek').format('ddd D MMM').toString(),
@@ -102,13 +101,12 @@ exports.user_goals_by_week = async (req, res) => {
     const previousWeek = Number(currentWeek) - 1
     const nextWeek = Number(currentWeek) + 1
     today.isoWeek(currentWeek)
-    await db.getGoalsByWeekNumber(currentWeek).then(listOfAllGoals => {
-      res.render('userGoals', {
+    await db.getPublicGoalsByWeekNumber(currentWeek).then(listOfAllGoals => {
+      res.render('publicWeeklyGoals', {
         'user': req.user,
         'upcomingGoals': listOfAllGoals.filter(goal => goal.isComplete === false),
         'completedGoals': listOfAllGoals.filter(goal => goal.isComplete === true),
         'currentWeek': Number(currentWeek),
-        // 'currentWeek2': currentWeek2,
         'previousWeek': previousWeek,
         'nextWeek': nextWeek,
         'fromDate': today.startOf('isoWeek').format('ddd D MMM').toString(),
@@ -140,6 +138,7 @@ exports.post_add_goal = function(req, res) {
         res.status(400).send("goals must have an goal name.");
         return;
     };
+
     db.addGoal(req.user, req.body.goal, req.body.exReps, req.body.exTime, req.params.currentWeek);
     res.redirect(`/mygoals/${req.params.currentWeek}`)
 };
@@ -157,7 +156,7 @@ exports.edit_goal = async (req, res) => {
       'goalDate' : goals.goalDate,
       'exReps': goals.exReps,
       'exTime': goals.exTime,
-      'currentWeek': currentWeek
+      'currentWeek': currentWeek,
     });;
   }
 
@@ -212,6 +211,30 @@ exports.delete_goal = async (req, res) => {
     await db.deleteGoal(req.params._id);
     res.redirect(`/mygoals/${req.params.currentWeek}`)
 };
+
+//calls the make goal public method and passes through an ID
+exports.make_public = async (req, res) => {
+    if (!req.params._id) {
+      res.status(400).send('No goal id provided');
+      return
+    };
+  
+    await db.makePublic(req.params._id);
+    res.redirect(`/mygoals/${req.params.currentWeek}`)
+};
+
+//calls the make goal unpublic method and passes through an ID
+exports.make_unpublic = async (req, res) => {
+    if (!req.params._id) {
+      res.status(400).send('No goal id provided');
+      return
+    };
+  
+    await db.makeUnpublic(req.params._id);
+    res.redirect(`/mygoals/${req.params.currentWeek}`)
+};
+
+
 
 
 

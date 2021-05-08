@@ -45,7 +45,10 @@
                 </div>
                 <div class="card-text">
                   Expected Time(Minutes): {{exTime}}
-                </div>    
+                </div>
+                <div class="card-text">
+                  is Public to all users?: {{isPublic}}
+                </div>  
                  <a href="/editgoal/{{_id}}/{{currentWeek}}" class="btn btn-primary">
                      Edit Goal
                   </a>
@@ -55,6 +58,12 @@
                   <a href="/deletegoal/{{_id}}/{{currentWeek}}" class="btn btn-primary">
                      Delete Goal
                   </a>
+                  <a href="/makePublic/{{_id}}/{{currentWeek}}" class="btn btn-primary">
+                     Make Public
+                  </a>
+                  <a href="/makeUnpublic/{{_id}}/{{currentWeek}}" class="btn btn-primary">
+                     Make Unpublic
+                  </a>
             </div>
         <hr>
         {{/upcomingGoals}}
@@ -63,8 +72,6 @@
             No Upcoming Goals Yet
         {{/upcomingGoals}} 
     </div>
-
-
 
     <div class="card">
     <h2>Completed Goals</h2>
@@ -79,12 +86,18 @@
                 <div class="card-text">
                   Time (Minutes): {{time}} -  Expected Time (Minutes): {{exTime}}
                 </div>
-                  <div class="card-text">
-                  Goal Date: {{goalDate}}
-                </div>
+                <div class="card-text">
+                  is Public to all users?: {{isPublic}}
+                </div>  
                 <a href="/deletegoal/{{_id}}/{{currentWeek}}" class="btn btn-primary">
                   Delete Goal
                 </a>
+                  <a href="/makePublic/{{_id}}/{{currentWeek}}" class="btn btn-primary">
+                     Make Public
+                  </a>
+                  <a href="/makeUnpublic/{{_id}}/{{currentWeek}}" class="btn btn-primary">
+                     Make Unpublic
+                  </a>
             </div>
         <hr>
         {{/completedGoals}}
