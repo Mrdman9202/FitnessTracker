@@ -93,16 +93,17 @@ class Goals{
 
 
   //add goal to DB Function using the passed through goal and date
-  addGoal (user, goal, goalDate, exReps, exTime) {
+  addGoal (user, goal, goalDay, exReps, exTime, weekNumber) {
       var newGoal = {
         user: user,
         goal: goal,
         exReps: exReps,
         exTime: exTime,
-        rep: 'N/A',
-        time: 'N/A',
+        rep: 0,
+        time: 0,
         isComplete: false,
-        goalDate: goalDate
+        goalDay: goalDay,
+        weekNumber: Number(weekNumber)
       };
 
       this.db.insert(newGoal, function(err, doc) {
@@ -115,8 +116,8 @@ class Goals{
     };
 
     //updated the passed through goal in the DB
-    updateGoal (id, goal, goalDate, exReps, exTime) {
-      this.db.update({ _id: id }, { $set: { goal: goal, goalDate: goalDate, exReps: exReps, exTime: exTime} }, (err, numUpdated) => {
+    updateGoal (id, goal, goalDay, exReps, exTime) {
+      this.db.update({ _id: id }, { $set: { goal: goal, goalDate: goalDay, exReps: exReps, exTime: exTime} }, (err, numUpdated) => {
         err ? console.log(`Error updating goal: ${id}`) : console.log(`${numUpdated} Goal updated in db`)
       })
     }
@@ -128,14 +129,6 @@ class Goals{
       });
   };
       
-  //get the goal that matches the passed through goal id
-  getGoalById (id) {
-      return new Promise((resolve, reject) => {
-        this.db.findOne({ _id: id }, (err, entry) => {
-          err ? reject(err) : resolve(entry)
-        })
-      })
-    }
   
   //completes the passed through goal  
   compelteGoal (id, reps, time) {
@@ -143,6 +136,27 @@ class Goals{
       err ? console.log(`Error updating goal: ${id}`) : console.log(`${numUpdated} Goal updated in db`)
     })
   }
+
+
+  //may need this
+  getGoalsByWeekNumber (weekNumber) {
+    return new Promise((resolve, reject) => {
+      this.db.find({ weekNumber: Number(weekNumber) }, (err, entries) => {
+        err ? reject(err) : resolve(entries)
+      })
+    })
+  }
+
+  //get the goal that matches the passed through goal id
+  getGoalById (id) {
+    return new Promise((resolve, reject) => {
+      this.db.findOne({ _id: id }, (err, entry) => {
+        err ? reject(err) : resolve(entry)
+      })
+    })
+  }
+
+
 
 }//end of goals class
 

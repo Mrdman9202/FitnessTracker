@@ -4,22 +4,26 @@ const db = new goalsDAO();
 const auth = require('../auth/auth.js');
 const {ensureLoggedIn} = require('connect-ensure-login'); 
 const Goals = require('../models/goalModel');
+const Moment = require('moment')
 
 exports.landing_page = function(req, res) {
 
     //runs the DB init function which seeds the DB
     // db.init();
+    const currentWeek = Moment().isoWeek()
      res.render('index', {
         'title': 'Home Page',
-        'user': req.user
+        'user': req.user,
+        'currentWeek': currentWeek
     });
 };
 
 //register function which has not been implemented yet
 exports.show_register_page = function(req, res) {
-
+   const currentWeek = Moment().isoWeek()
    res.render('register', {
-        'title': 'Register Page'
+        'title': 'Register Page',
+        'currentWeek': currentWeek
     });
 };
 
@@ -44,14 +48,17 @@ exports.post_new_user = function(req, res) {
 
 //login function which has not been implemented yet
 exports.show_login_page = function(req, res) {
-    
+    const currentWeek = Moment().isoWeek()
     res.render('login', {
-        'title': 'Login'
+        'title': 'Login',
+        'currentWeek': currentWeek
     });
 };
 
 exports.post_login = function(req, res) {
-    res.redirect("/mygoals");
+    const currentWeek = Moment().isoWeek()
+    res.redirect(`/mygoals/${currentWeek}`);
+    // res.redirect("/mygoals/${currentWeek}");
 };
 
 exports.logout = function(req, res) {
@@ -59,21 +66,53 @@ exports.logout = function(req, res) {
     res.redirect("/");
 }; 
 
-//loads the selected users goals from the DB, will be improved when the login and register is implemented 
-exports.user_goals = function(req, res) {
+// //old
+//loads the signed in users goals from the DB
+// exports.user_goals = function(req, res) {
 
-    db.getUsersGoals(req.user).then((list) => {
-        res.render('userGoals', {
-            'title': 'My Goals',
-            'user': req.user,
-            'upcomingGoals': list.filter(goal => goal.isComplete == false),
-            'completedGoals': list.filter(goal => goal.isComplete == true)
-        });
-        console.log('promise resolved');
-    }).catch((err) => {
-        console.log('promise rejected', err);
+//     db.getUsersGoals(req.user).then((list) => {
+//         res.render('userGoals', {
+//             'title': 'My Goals',
+//             'user': req.user,
+//             'upcomingGoals': list.filter(goal => goal.isComplete == false),
+//             'completedGoals': list.filter(goal => goal.isComplete == true)
+//         });
+//         console.log('promise resolved');
+//     }).catch((err) => {
+//         console.log('promise rejected', err);
+//     })
+// };
+
+//new
+exports.user_goals_by_week = async (req, res) => {
+
+    const today = new Moment()
+    const currentWeek = req.params.currentWeek
+    // const currentWeek = Moment().isoWeek()
+    const previousWeek = Number(currentWeek) - 1
+    const nextWeek = Number(currentWeek) + 1
+    today.isoWeek(currentWeek)
+    await db.getGoalsByWeekNumber(currentWeek).then(listOfAllGoals => {
+    //   db.getGoalsByWeekNumber(currentWeek).then(listOfAllGoals => {
+      res.render('userGoals', {
+        // 'allGoals': listOfAllGoals,
+        'user': req.user,
+        'upcomingGoals': listOfAllGoals.filter(goal => goal.isComplete === false),
+        'completedGoals': listOfAllGoals.filter(goal => goal.isComplete === true),
+        'currentWeek': Number(currentWeek),
+        // 'currentWeek2': currentWeek2,
+        'previousWeek': previousWeek,
+        'nextWeek': nextWeek,
+        'fromDate': today.startOf('isoWeek').format('ddd D MMM').toString(),
+        'toDate': today.endOf('isoWeek').format('ddd D MMM').toString(),
+        'thisWeek': Moment().isoWeek()
+      })
+      console.log('Promise resolved')
+    }).catch(err => {
+      console.log(`Promise rejected: ${err}`)
     })
-};
+  }
+
 
 //GET
 //sends the title to the view
@@ -92,8 +131,8 @@ exports.post_add_goal = function(req, res) {
         res.status(400).send("goals must have an goal name.");
         return;
     };
-    db.addGoal(req.user, req.body.goal, req.body.goalDate, req.body.exReps, req.body.exTime);
-    res.redirect('/mygoals');
+    db.addGoal(req.user, req.body.goal, req.body.goalDate, req.body.exReps, req.body.exTime, req.params.currentWeek);
+    res.redirect(`/mygoals/${req.params.currentWeek}`)
 };
 
 //GET

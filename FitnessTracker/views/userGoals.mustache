@@ -6,8 +6,29 @@
 
 <body class="container">
 
+    <div class="container flex-fill">
+      <div class="d-flex justify-content-center">
+          <h1>Week {{currentWeek}}</h1>
+      </div>
+      <div class="d-flex justify-content-center">
+          <h2>{{fromDate}} - {{toDate}}</h2>
+      </div>
+      <ul class="pagination d-flex justify-content-center">
+        <li class="page-item">
+            <a class="page-link" href="/mygoals/{{previousWeek}}" tabindex="-1" aria-disabled="true"><i
+                    class="bi bi-arrow-left"></i> {{previousWeek}}</a>
+        </li>
+        <li class="page-item active" aria-current="page">
+            <a class="page-link" href="/mygoals/{{previousWeek}}">This Week</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="/mygoals/{{nextWeek}}">{{nextWeek}} <i class="bi bi-arrow-right"></i></a>
+        </li>
+      </ul>
+    </div>
+
     <div class="text-left">
-        <a href="/addgoal" class="btn btn-primary">
+        <a href="/addgoal/{{currentWeek}}" class="btn btn-primary">
         Add New Goal
         </a>
     </div>
@@ -26,15 +47,15 @@
                   Expected Time(Minutes): {{exTime}}
                 </div>
                  <div class="card-text">
-                  Goal Date: {{goalDate}}
+                  Goal Day: {{goalDay}}
                 </div>
-                 <a href="/editgoal/{{_id}}" class="btn btn-primary">
+                 <a href="/editgoal/{{_id}}/{{currentWeek}}" class="btn btn-primary">
                      Edit Goal
                   </a>
-                  <a href="/completegoal/{{_id}}" class="btn btn-primary">
+                  <a href="/completegoal/{{_id}}/{{currentWeek}}" class="btn btn-primary">
                      Complete Goal
                   </a>
-                  <a href="/deletegoal/{{_id}}/" class="btn btn-primary">
+                  <a href="/deletegoal/{{_id}}/{{currentWeek}}" class="btn btn-primary">
                      Delete Goal
                   </a>
             </div>
@@ -56,20 +77,17 @@
             </div>
              <div class="card-body">
                 <div class="card-text">
-                  No of Reps: {{reps}}
+                  No of Reps: {{reps}} - Expected No of Reps: {{exReps}}
                 </div>
                 <div class="card-text">
-                  Time (Minutes): {{time}}
+                  Time (Minutes): {{time}} -  Expected Time (Minutes): {{exTime}}
                 </div>
                   <div class="card-text">
                   Goal Date: {{goalDate}}
                 </div>
-                 <a href="/editgoal/{{_id}}" class="btn btn-primary">
-                     Edit Goal
-                  </a>
-                  <a href="/deletegoal/{{_id}}/" class="btn btn-primary">
-                     Delete Goal
-                  </a>
+                <a href="/deletegoal/{{_id}}/" class="btn btn-primary">
+                  Delete Goal
+                </a>
             </div>
         <hr>
         {{/completedGoals}}
