@@ -72,14 +72,11 @@ exports.user_goals_by_week = async (req, res) => {
 
     const today = new Moment()
     const currentWeek = req.params.currentWeek
-    // const currentWeek = Moment().isoWeek()
     const previousWeek = Number(currentWeek) - 1
     const nextWeek = Number(currentWeek) + 1
     today.isoWeek(currentWeek)
     await db.getGoalsByWeekNumber(currentWeek).then(listOfAllGoals => {
-    //   db.getGoalsByWeekNumber(currentWeek).then(listOfAllGoals => {
       res.render('userGoals', {
-        // 'allGoals': listOfAllGoals,
         'user': req.user,
         'upcomingGoals': listOfAllGoals.filter(goal => goal.isComplete === false),
         'completedGoals': listOfAllGoals.filter(goal => goal.isComplete === true),
@@ -101,10 +98,11 @@ exports.user_goals_by_week = async (req, res) => {
 //GET
 //sends the title to the view
 exports.add_goal = function(req, res) {
-
+    const currentWeek = Moment().isoWeek()
     res.render('addGoal', {
         'title': 'Add Goal',
         'user': req.user,
+        'currentWeek': currentWeek
     });
 };
 
@@ -122,14 +120,17 @@ exports.post_add_goal = function(req, res) {
 //GET
 //gets the selected goals details and passes them to the view
 exports.edit_goal = async (req, res) => {
+    const currentWeek = Moment().isoWeek()
     const id = req.params._id
     const goals = await db.getGoalById(id)
     res.render('editGoal', {
+      'title': 'Edit Goal',
       'user': req.user,
       'goal': goals.goal,
       'goalDate' : goals.goalDate,
       'exReps': goals.exReps,
-      'exTime': goals.exTime
+      'exTime': goals.exTime,
+      'currentWeek': currentWeek
     });;
   }
 
@@ -142,23 +143,26 @@ exports.post_edit_goal = function(req, res) {
         return
       }
   
-      db.updateGoal(req.params._id, req.body.goal, req.body.goalDate, req.body.exReps, req.body.exTime)
+      db.updateGoal(req.params._id, req.body.goal, req.body.exReps, req.body.exTime)
       res.redirect(`/mygoals/${req.params.currentWeek}`)
 };
 
 //GET
 //gets the sellected goals details and passes them to the view
 exports.complete_goal = async (req, res) => {
+    const currentWeek = Moment().isoWeek()
     const id = req.params._id
     const goals = await db.getGoalById(id)
     res.render('completeGoal', {
+      'title': 'Complete Goal',
       'user': req.user,
       'goal': goals.goal,
       'goalDate' : goals.goalDate,
       'exReps': goals.exReps,
       'exTime': goals.exTime,
       'reps': goals.reps,
-      'time': goals.time
+      'time': goals.time,
+      'currentWeek': currentWeek
     })
 
   }

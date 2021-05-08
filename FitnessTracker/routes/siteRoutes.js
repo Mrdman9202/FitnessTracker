@@ -16,8 +16,6 @@ router.post("/login", auth.authorize("/login"), controller.post_login);
 
 router.get("/logout", controller.logout); 
 
-//implement this
-//--------------------------------------------------------------------------------------
 router.get(`/mygoals/:currentWeek`, ensureLoggedIn('/login'), controller.user_goals_by_week)
 
 router.get('/mygoals/:previousWeek', ensureLoggedIn('/login'), controller.user_goals_by_week)
@@ -34,12 +32,5 @@ router.get('/completegoal/:_id/:currentWeek', ensureLoggedIn('/login'), controll
 router.post('/completegoal/:_id/:currentWeek', ensureLoggedIn('/login'), controller.post_complete_goal);
 
 router.get('/deletegoal/:_id/:currentWeek', ensureLoggedIn('/login'), controller.delete_goal);
-
-//-------------------------------------------------------------------------------------
-
-
-
-
-
 
 module.exports = router;
